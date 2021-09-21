@@ -1,0 +1,51 @@
+{% extends "base.html" %} 
+{% block title %}sigup{% endblock %}
+
+{%block content %}
+
+<form method="POST">
+  <h1>This is signup page</h1>
+  <div class="form-group">
+    <label for="email">email address</label>
+  <input
+  type="email"
+  class="form-control"
+  id="email"
+  Name="email"
+  plaseholder="enter email"/>
+  
+  </div>
+  <div class="form-group">
+    <label for="firstname">firstname</label>
+  <input
+  type="text"
+  class="form-control"
+  id="firstname"
+  Name="firstname"
+  plaseholder="enter firstname"/>
+  
+  </div>
+  <div class="form-group">
+    <label for="password1">password</label>
+  <input
+  type="password"
+  class="form-control"
+  id="password1"
+  Name="password1"
+  plaseholder="enter password"/>
+  
+  </div>
+  <div class="form-group">
+    <label for="password2">Confirm password</label>
+  <input
+  type="password"
+  class="form-control"
+  id="password2"
+  Name="password2"
+  plaseholder="Confirm password"/>
+  
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">submit</button>
+</form>
+  {% endblock %}
