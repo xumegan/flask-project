@@ -2,8 +2,29 @@
 {% block title %}Home{% endblock %}
 
 {%block content %}
-<h1>This is home page</h1>
-  {% endblock %}
+<ul class="list-group list-group-flush" id="notes">
+  {% for note in user.notes %}
+  <li class="list-group-item">{{ note.data }}
+    <button type="submit" class="btn" onClick="deletenote({{note.id}})"><i class="fa fa-trash"></i></button>
+  </li>
+  {% endfor %}
+</ul>
+<form method="POST">
+  <h1 align="center">This is note page</h1>
+  <textarea
+  class="form-control"
+  id="note"
+  Name="note"
+  plaseholder="enter somtheing"
+  ></textarea>
+  <br>
+  <div align="center">
+    <button type="submit" class="btn btn-primary">add note</button>
+  </div>
+  <br>
+</form>
+
+{% endblock %}
 
 
 
