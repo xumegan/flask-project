@@ -3,9 +3,12 @@ from flask_login import login_required,current_user
 from .models import Note
 from . import db
 import json
+
+import investpy as inv
+import pandas as pd
 views = Blueprint('views', __name__)
 
-@views.route('/',methods=['GET','POST'])
+@views.route('/',methods=['GET','POST']) #define a route and follow a function
 @login_required
 def home():
   if request.method == 'POST':
@@ -29,3 +32,22 @@ def delete_note():
       db.session.delete(note)
       db.session.commit()
   return jsonify({})
+
+# @views.route('/invest')
+# #@login_required
+# def invest():
+#   #stocks = ["WEGE3", "JHSF3"]
+#   stocks = ["JHSF3"]
+#   dfs = list()
+
+#   for stock in stocks:
+#     df = inv.get_stock_historical_data(stock=stock, 
+#     country="Brazil", 
+#     from_date="01/01/2020", 
+#     to_date="01/01/2021")["Open"]
+#     print(df[0])
+#     dfs.append(df)
+  
+#   print(dfs[0])
+  
+#   return render_template("invest.html",user=dfs)

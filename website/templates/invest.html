@@ -1,0 +1,58 @@
+{% extends "base.html" %} 
+{% block title %}invest{% endblock %}
+
+{%block content %}
+<h1 align="center">Stock Display(invest.com)</h1>
+<input type="text" placeholder="stock name"/>
+<div class="row">
+  <table class="table table-bordered col-6" method="GET">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Open</th>
+        <th scope="col">Close</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in datesimple %}
+        {% for i in range(9) %}
+      <tr>
+        <th scope="row">{{i}}</th>
+        <td> {{d[i]}}</td>
+        <td> {{d[i]}}</td>
+        <td> {{d[i]}}</td> 
+      </tr>
+      {% endfor %}
+      {% endfor %}
+      
+    </tbody>
+  </table>
+  <div class="col-6 p-4">
+    <div class="card m-auto" style="width: 90%;" data-aos="fade-left">
+        <div class="card-body">
+            <div id="chart1"></div>
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+us corporis asperiores esse ipsum?</p>
+        </div>
+        </div>
+    </div>
+  </div>
+
+    </div>
+</div>
+<!-- plotly CDN -->
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var graph1 = {{ graph1JSON | safe}};
+    console.log({graph1})
+    Plotly.plot("chart1", {{ graph1JSON | safe}},{});
+
+    // var graphs2 = "{{ graph2JSON | safe}}";
+    // Plotly.plot("chart2", {{ graph2JSON | safe}},{});
+
+    // var graphs3 = "{{ graph3JSON | safe}}";
+    // Plotly.plot("chart3", graphs3,{});
+</script>
+{% endblock %}
