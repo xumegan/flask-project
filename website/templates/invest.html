@@ -2,11 +2,24 @@
 {% block title %}invest{% endblock %}
 
 {%block content %}
-<h1 align="center">Stock Display(invest.com)</h1>
-<input type="text" placeholder="stock name"/>
-<div class="row">
-  <table class="table table-bordered col-6" method="GET">
-    <thead>
+<h1 align="center">{{stocks[0]}} Stock Display(invest.com)</h1>
+<form method="POST">
+  <label>start date</label>
+  <input type="date" id="startdate" Name="startdate"/>
+  <label>End date</label>
+  <input type="date" id="enddate" Name="enddate"/>
+  <select id="pickstock" Name="pickstock">
+    <option value="TRP">TC Energy Corp</option>
+    <option value="SU">Suncor Energy Inc</option>
+    <option value="CP">Canadian Pacific Railway Ltd</option>
+    <option value="IMO">Imperial Oil Ltd</option>
+  </select>
+  <input type="submit">
+</form>
+
+<div class="row stocktable">
+  <table class="table table-bordered col-4" method="GET" cellspacing="0" cellpadding="1" width="300">
+    <thead cellspacing="0" cellpadding="1" width="300">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Date</th>
@@ -14,21 +27,21 @@
         <th scope="col">Close</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody cellspacing="0" cellpadding="1" width="300">
       {% for d in datesimple %}
-        {% for i in range(9) %}
+        {% for i in range(k) %}
       <tr>
         <th scope="row">{{i}}</th>
-        <td> {{d[i]}}</td>
-        <td> {{d[i]}}</td>
-        <td> {{d[i]}}</td> 
+        <td> {{d.get('date')[i]}}</td>
+        <td> {{d.get('open')[i]}}</td>
+        <td> {{d.get('close')[i]}}</td> 
       </tr>
       {% endfor %}
       {% endfor %}
       
     </tbody>
   </table>
-  <div class="col-6 p-4">
+  <div class="col-8 p-4">
     <div class="card m-auto" style="width: 90%;" data-aos="fade-left">
         <div class="card-body">
             <div id="chart1"></div>
@@ -37,22 +50,27 @@ us corporis asperiores esse ipsum?</p>
         </div>
         </div>
     </div>
+    <div class="col-6 p-4">
+      <div class="card m-auto" style="width: 90%;" data-aos="fade-left">
+          <div class="card-body">
+              <div id="chart2"></div>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. us corporis asperiores esse ipsum?</p>
+          </div>
+          </div>
+      </div>
   </div>
 
     </div>
 </div>
+
 <!-- plotly CDN -->
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script type="text/javascript">
-    var graph1 = {{ graph1JSON | safe}};
-    console.log({graph1})
+    //var graph1 = {{ graph1JSON | safe}};
     Plotly.plot("chart1", {{ graph1JSON | safe}},{});
 
-    // var graphs2 = "{{ graph2JSON | safe}}";
-    // Plotly.plot("chart2", {{ graph2JSON | safe}},{});
+    //Plotly.plot("chart2", {{ graph2JSON | safe}},{});
 
-    // var graphs3 = "{{ graph3JSON | safe}}";
-    // Plotly.plot("chart3", graphs3,{});
 </script>
 {% endblock %}

@@ -33,21 +33,3 @@ def delete_note():
       db.session.commit()
   return jsonify({})
 
-# @views.route('/invest')
-# #@login_required
-# def invest():
-#   #stocks = ["WEGE3", "JHSF3"]
-#   stocks = ["JHSF3"]
-#   dfs = list()
-
-#   for stock in stocks:
-#     df = inv.get_stock_historical_data(stock=stock, 
-#     country="Brazil", 
-#     from_date="01/01/2020", 
-#     to_date="01/01/2021")["Open"]
-#     print(df[0])
-#     dfs.append(df)
-  
-#   print(dfs[0])
-  
-#   return render_template("invest.html",user=dfs)
